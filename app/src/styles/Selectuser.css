@@ -1,0 +1,29 @@
+.bgimg{
+    width: 100%;
+    height: 100vh;
+    background: url(../img/bbblurry.svg) center center no-repeat;
+    
+}
+#avather{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.grids{
+    @apply  col-span-2 flex justify-center items-center w-full h-full p-16;
+    /* width: 150px;
+    height:150px; */
+    flex-direction: column;
+    background-color: #f2f2f280;
+    border-radius: 10px;
+
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+  }
+  .clickcolour{
+
+  }

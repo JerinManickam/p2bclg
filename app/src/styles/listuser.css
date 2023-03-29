@@ -1,0 +1,22 @@
+.bgimg{
+    width: 100%;
+    height: 100vh;
+    background: url("../img/bbblurry.svg") center center no-repeat;
+}
+.avcontainer{
+    @apply grid grid-cols-4 justify-items-center items-center bg-slate-200 mx-auto my-2;
+    width: 93%;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #f2f2f280;
+    box-shadow: 0 0 10px #0000002b;
+}
+#avimg{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+.overlay{
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: 10px;
+}
