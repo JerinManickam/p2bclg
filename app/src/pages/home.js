@@ -6,9 +6,12 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 //GunDb
 // import {insertInitialVal} from './features/dbcontext'
+import DBOp from '../db/dbservices';
 
 
 const Home = ()=>{
+
+  
 const user = useSelector(state=>state.user.value);
 
 //Login Event 
@@ -16,13 +19,27 @@ const user = useSelector(state=>state.user.value);
 //  const router = useRouter();
 const navigate = useNavigate();
  const login =()=>{
-  
-   if(email == user.email && pass == user.passw){
-    navigate('/selectuser')
-   }
-   else{
-  console.log("Incorrect Email or Password");
-   }
+  let islogin = false;
+    DBOp.getUser().once(data=>{
+        let users;
+        debugger;
+        if(data.userStr){
+            users =JSON.parse(data.userStr);
+            for(let i=0;i<users.length;i++){
+                if(users[i].email == email && users[i].passw==pass){
+                  localStorage.setItem("loggedInUser",JSON.stringify(users[i]));
+
+                  islogin = true;
+                    navigate("/selectuser")
+                }
+            }
+            if(!islogin) alert("invalid username or password")
+        }
+    })
+  //  if(email == user.email && pass == user.passw){
+  //   navigate('/selectuser')
+  //  }
+   
  }
 
 
@@ -134,9 +151,9 @@ const navigate = useNavigate();
           <div className='mx-10 mt-10 flex justify-between items-center'>
           
           
-          <Link to="/signup">
+          {/* <Link to="/signup">
             <h3 className='underline underline-offset-1'>Sign up</h3>
-             </Link>
+             </Link> */}
   
   
          <h3 className='underline underline-offset-1'>Forget Password</h3>

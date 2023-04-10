@@ -6,8 +6,6 @@ import {Link} from 'react-router-dom'
 import DBOp from "../db/dbservices";
 
 const Taxpage=()=>{
-   
-
         
     const [users,setUsers]= useState(null)
     const [taxType,setTaxType]= useState(null)
@@ -20,6 +18,10 @@ const Taxpage=()=>{
       
         let dataUser = DBOp.getUser();
         let taxtypes = DBOp.getTaxType();
+        let taxId = localStorage.getItem("taxid");
+        if(taxId){
+            settaxTypeId(parseInt(taxId));
+        }
        
         dataUser.once(data=>{
            
@@ -27,20 +29,23 @@ const Taxpage=()=>{
 
             console.log(users)
         })
+
         taxtypes.once(data=>{
            
             setTaxType(data?JSON.parse(data.taxType):[])
 
             console.log(taxType)
         })
+
         
     },[])
 
     let taxes = DBOp.getTaxes();
     const submitTaxes=()=>{
-        debugger;
+        let date = new Date().getDate();
+         let month = new Date().getMonth();
+         let Year = new Date ().getFullYear();
         taxes.once(data=>{
-
             if(data){
                 let temptax=JSON.parse(data.taxes);
                 temptax = [
@@ -50,13 +55,15 @@ const Taxpage=()=>{
                         type:taxTypeId,
                         amount:amount,
                         userid:userId,
-                        data:Date.now()
+                        data:date+"/"+ month+ '/'+ Year,
                     }
                 ]
 
                 DBOp.putTax(temptax);
 
                 alert("Tax List Added");
+                
+                
             }
         })
 
@@ -106,7 +113,7 @@ const Taxpage=()=>{
             {/*Tax type*/}
             <label for="user" className={styles.selhead}>Tax type :</label>
             <div className="px-5">
-            <select id="user" className={styles.selection} onChange={
+            <select id="user" className={styles.selection} value={taxTypeId} onChange={
                 (e)=>{
                     settaxTypeId(parseInt( e.target.value?e.target.value:0))
                 }
@@ -129,7 +136,7 @@ const Taxpage=()=>{
 
             <div className="px-5">
             <input type="number" className={styles.inputs} placeholder="Amount Rs" min='0' onChange={
-                (e)=>{
+(e)=>{
                     setAmount(parseInt( e.target.value?e.target.value:0))
                 }
             }/>

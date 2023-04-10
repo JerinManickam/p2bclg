@@ -71,8 +71,8 @@ const Invoice = () => {
 
             {/* Table */}
             <section className="mt-8">
-                <table className="w-full">
-                    <thead>
+                <table className="table ">
+                    <thead className="head-table-blur table-head-blur">
                         {
                             TableHead.map(data => {
                                 return (
@@ -91,10 +91,10 @@ const Invoice = () => {
                             tax?tax.map(data => {
 
                                 return (
-                                    <tr className='tbdatarow'>
-                                        <td className="text-sm text-gray-700">{data.id}</td>
-                                        <td className="text-sm text-gray-700">{data.data}</td>
-                                        <td className="text-sm text-gray-700">{data.amount}</td>
+                                    <tr className='tbdatarow table-blur'>
+                                        <td className="py-3 text-sm text-gray-700 ">{data.id}</td>
+                                        <td className="text-sm text-gray-700 ">{data.data}</td>
+                                        <td className="text-sm text-gray-700 ">{data.amount}</td>
                                     </tr>
                                 )
                             }):""

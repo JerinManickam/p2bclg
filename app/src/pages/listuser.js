@@ -9,7 +9,7 @@ import Gun from 'gun'
 // const gun = Gun();
 const UserDetail =[
     {
-        avimg:"https://i.pinimg.com/550x/d8/ed/3e/d8ed3e8048041ac4f08ba5ec8e3d354f.jpg",
+        avimg:"https://images.pexels.com/photos/775358/pexels-photo-775358.jpeg?auto=compress&cs=tinysrgb&w=300",
         usname:"Jesus",
         time:"10.00 PM"
     },
@@ -86,7 +86,7 @@ const ListUser = ()=>{
                 {
                     users?users.map(details=>{
                         return( 
-                    <Link to="/incomeprofile">
+                    <Link to="#">
                     <section className='avcontainer'>
                     <div  id='avimg' style={{background:`url(${details.img}) center center`,backgroundSize:"cover",}}></div>
                     <h3 className="col-span-2 text-2xl font-medium">{details.name}</h3>

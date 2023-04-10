@@ -13,7 +13,7 @@
 }
 .heading{
   @apply font-bold mx-10 pt-4;
-  text-align: left;
+  /* text-align: left; */
   font-size: 2.5rem;
 }
 .inputs{
@@ -23,4 +23,8 @@
     border: 1px solid rgb(202 1 255);
     border-radius: 10px;
     padding-left: 10px;
+    background: #fff;
+}
+.inputs.h-auto{
+  height: auto;
 }
